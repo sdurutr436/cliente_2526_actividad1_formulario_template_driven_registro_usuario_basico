@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
         confirmPassword: ''
     };
     
+    mostrarErrorPasswords: boolean = false; // Añadido pero realmente he visto que hay validación ya.
     usuariosRegistrados: any[] = [];
     mensajeExito: string = '';
     

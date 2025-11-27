@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Formulario básico en Angular</h1>
-    <form #formularioBasico="ngForm" (ngSubmit)="onSubmit(formularioBasico)">
+    <form class="form-basico" #formularioBasico="ngForm" (ngSubmit)="onSubmit(formularioBasico)">
         <label for="nombre">
             Nombre:
             <input type="text" name="nombre" id="nombre" ngModel required minlength="3" #nombre="ngModel">
@@ -17,15 +17,32 @@
         </label>
         <label for="email">
             Email:
-            <input type="email" name="email" id="email" ngModel required>
+            <input type="email" name="email" id="email" ngModel required #email="ngModel">
+            <div *ngIf="email.invalid && email.touched">
+                El email es obligatorio y debe tener un formato válido.
+            </div>
         </label>
         <label for="contrasenia">
             Contraseña:
-            <input type="password" name="contrasenia" id="contrasenia" ngModel required minlength="6">
+            <input type="password" name="contrasenia" id="contrasenia" ngModel required minlength="6" #contrasenia="ngModel">
+            <div *ngIf="contrasenia.invalid && contrasenia.touched">
+                La contraseña debe tener al menos 6 caracteres.
+            </div>
         </label>
         <label for="confirmContrasenia">
             Confirmar Contraseña:
-            <input type="password" name="confirmContrasenia" id="confirmContrasenia" ngModel required minlength="6">
+            <input
+            type="password"
+            name="confirmContrasenia"
+            id="confirmContrasenia"
+            [(ngModel)]="usuario.confirmPassword"
+            required
+            minlength="6"
+            #contraseniaConfirm="ngModel"
+            >
+            <div *ngIf="contraseniaConfirm.invalid && contraseniaConfirm.touched">
+                La confirmación de la contraseña debe tener al menos 6 caracteres.
+            </div>
         </label>
         <button type="submit">Registrarse</button>
     </form>
